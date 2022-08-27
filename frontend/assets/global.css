@@ -229,3 +229,6 @@ main.please-wait .loader:after{
     transform: rotate(360deg);
   }
 }
+.center{
+  text-align: center !important;
+}

@@ -27149,13 +27149,35 @@ function App() {
             });
         });
     };
+    // const deleteTaskButton = (id) =>{
+    //   console.log('id: ')
+    //   let taskDeleteSelected = tasks.filter((task) => task.id === id)[0]
+    //   console.log('taskDeleteSelected: ' + taskDeleteSelected.id)
+    //   // deleteTask(deleteTaskButton.id)
+    // }
+    function deleteTaskBtn(id) {
+        (0, _nearApi.deleteTask)(id).then(()=>{
+            getTasks().then((res)=>setTasks(res)).finally(()=>{
+                setTaskValue("");
+            });
+        });
+    }
+    const stye_task = {
+        // textAlign: "center",
+        color: "white",
+        listStyleType: "none"
+    };
+    const button_style = {
+        float: "right",
+        backgroundColor: "green"
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _uiComponents.SignOutButton), {
                 accountId: window.accountId
             }, void 0, false, {
                 fileName: "App.jsx",
-                lineNumber: 52,
+                lineNumber: 76,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
@@ -27165,27 +27187,40 @@ function App() {
                         children: "Tasks today:"
                     }, void 0, false, {
                         fileName: "App.jsx",
-                        lineNumber: 55,
+                        lineNumber: 79,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: "greeting",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                            className: "center",
+                            style: stye_task,
                             children: tasks.map((task)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                                    children: task.content
-                                }, task.id, false, {
+                                    children: [
+                                        task.content,
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                            style: button_style,
+                                            onClick: ()=>deleteTaskBtn(task.id),
+                                            children: "delete"
+                                        }, void 0, false, {
+                                            fileName: "App.jsx",
+                                            lineNumber: 88,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, task.id, true, {
                                     fileName: "App.jsx",
-                                    lineNumber: 62,
+                                    lineNumber: 86,
                                     columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "App.jsx",
-                            lineNumber: 59,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "App.jsx",
-                        lineNumber: 58,
+                        lineNumber: 82,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27195,7 +27230,7 @@ function App() {
                                 children: "Change greeting:"
                             }, void 0, false, {
                                 fileName: "App.jsx",
-                                lineNumber: 70,
+                                lineNumber: 97,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27209,7 +27244,7 @@ function App() {
                                         id: "greetingInput"
                                     }, void 0, false, {
                                         fileName: "App.jsx",
-                                        lineNumber: 72,
+                                        lineNumber: 99,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27219,38 +27254,38 @@ function App() {
                                                 children: "Save"
                                             }, void 0, false, {
                                                 fileName: "App.jsx",
-                                                lineNumber: 82,
+                                                lineNumber: 109,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                                 className: "loader"
                                             }, void 0, false, {
                                                 fileName: "App.jsx",
-                                                lineNumber: 83,
+                                                lineNumber: 110,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "App.jsx",
-                                        lineNumber: 81,
+                                        lineNumber: 108,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "App.jsx",
-                                lineNumber: 71,
+                                lineNumber: 98,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "App.jsx",
-                        lineNumber: 69,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "App.jsx",
-                lineNumber: 54,
+                lineNumber: 78,
                 columnNumber: 7
             }, this)
         ]
@@ -30707,8 +30742,8 @@ Object.defineProperty(exports, "BinaryReader", {
 
 },{"borsh":"4JCmN"}],"4JCmN":[function(require,module,exports) {
 "use strict";
-var global = arguments[3];
 var Buffer = require("buffer").Buffer;
+var global = arguments[3];
 var __createBinding = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, {
@@ -38632,8 +38667,8 @@ async function signTransaction(...args) {
 exports.signTransaction = signTransaction;
 
 },{"buffer":"29JgA","js-sha256":"ahVaM","./utils/enums":"kjmPo","borsh":"4JCmN","./utils/key_pair":"kBQFP"}],"ahVaM":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 /**
  * [js-sha256]{@link https://github.com/emn178/js-sha256}
  *

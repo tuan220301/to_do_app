@@ -47,6 +47,30 @@ export default function App() {
         });
     });
   };
+  // const deleteTaskButton = (id) =>{
+  //   console.log('id: ')
+  //   let taskDeleteSelected = tasks.filter((task) => task.id === id)[0]
+  //   console.log('taskDeleteSelected: ' + taskDeleteSelected.id)
+  //   // deleteTask(deleteTaskButton.id)
+  // }
+  function deleteTaskBtn(id){
+    deleteTask(id).then(()=>{
+      getTasks()
+        .then((res) => setTasks(res))
+        .finally(() => {
+          setTaskValue("");
+        });
+    })
+  }
+  const stye_task ={
+    // textAlign: "center",
+    color: "white",
+    listStyleType: "none"
+  };
+  const button_style ={
+    float: "right",
+    backgroundColor: "green"
+  }
   return (
     <>
       <SignOutButton accountId={window.accountId}/>
@@ -56,10 +80,13 @@ export default function App() {
           Tasks today: 
         </h1>
         <div className="greeting">
-          <ul>
+          <ul className='center' style={stye_task}>
             {
               tasks.map(task =>(
-                <li key={task.id}>{task.content}</li>
+                <li key={task.id}>
+                  {task.content}
+                  <button style={button_style} onClick={() => deleteTaskBtn(task.id)}>delete</button>
+                </li>
               ))
             }
           </ul>
